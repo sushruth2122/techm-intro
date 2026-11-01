@@ -18,13 +18,6 @@
   color-scheme: dark;
 }
 
-/* Astrikos-only edition: Astrikos magenta instead of Tech Mahindra red, and the
-   Astrikos logo carries the brand on its own. */
-[data-edition='astrikos'] {
-  --accent: #ff00b7;
-  --accent-hi: #ff5cd0;
-}
-
 *,
 *::before,
 *::after {
@@ -597,15 +590,6 @@ kbd {
 
 .logos .logo-astrikos {
   height: 50px;
-}
-
-/* With no partner logo beside it, the Astrikos logo can take more room. */
-[data-edition='astrikos'] .presents .logo-astrikos {
-  height: clamp(76px, 9.5vw, 132px);
-}
-
-[data-edition='astrikos'] .logos .logo-astrikos {
-  height: 58px;
 }
 
 .logos i {

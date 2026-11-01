@@ -9,7 +9,7 @@ import { POOL, GLOBE_N, PAL, rng, sparkShape, gridShape, globeShape, globeGrid, 
 import { MorphPoints, GlowPoints, state, morphMaterial, floorMaterial, arcMaterial, glowTexture } from './materials.js';
 import { buildScenes } from './scenes.js';
 import { PORTALS, LOOP_DWELL } from '../config.js';
-import { ACCENT } from '../edition.js';
+import { ACCENT } from '../brand.js';
 
 const FOV = 42;
 const BLOOM = 0.95;

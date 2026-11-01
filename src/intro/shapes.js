@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { ACCENT } from '../edition.js';
+import { ACCENT } from '../brand.js';
 
 // Procedural structures for the intro. Each shape is described as wireframe edges
 // (plus a few surfaces and point clusters) and baked into a fixed number of particles,

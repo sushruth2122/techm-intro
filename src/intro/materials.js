@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { rng } from './shapes.js';
-import { ACCENT } from '../edition.js';
+import { ACCENT } from '../brand.js';
 
 const accent = new THREE.Color(ACCENT);
 

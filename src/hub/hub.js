@@ -32,8 +32,8 @@ export function mountHub(root, { onReplay, onPreview, onRelease }) {
     <div class="hub-inner">
       <header class="hub-top">
         <div class="logos">
-          ${BRAND.techm ? `<img class="logo-techm" src="${BRAND.techm.src}" alt="${esc(BRAND.techm.alt)}" />
-          <i aria-hidden="true"></i>` : ''}
+          <img class="logo-techm" src="${BRAND.techm.src}" alt="${esc(BRAND.techm.alt)}" />
+          <i aria-hidden="true"></i>
           <img class="logo-astrikos" src="${BRAND.astrikos.src}" alt="${esc(BRAND.astrikos.alt)}" />
         </div>
         <div class="hub-title">

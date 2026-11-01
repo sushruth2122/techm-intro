@@ -4,47 +4,32 @@ A Three.js intro for the Tech Mahindra × Astrikos AI partnership: a spark, then
 
 ```bash
 npm install
-npm run dev                # Tech Mahindra × Astrikos edition, http://localhost:5173
-npm run dev:astrikos       # Astrikos-only edition
-npm run build              # → dist/
-npm run build:astrikos     # → dist-astrikos/
+npm run dev      # http://localhost:5173
+npm run build    # static site in dist/
 ```
 
-## Two editions
-
-The same code builds two sites:
-
-| | Tech Mahindra × Astrikos AI (default) | Astrikos only |
-| --- | --- | --- |
-| Logos | Tech Mahindra & Astrikos | Astrikos |
-| Accent colour | Tech Mahindra red | Astrikos magenta |
-| Dashboard links | the `techm-*` deployments | the Astrikos deployments |
-| Build | `npm run build` → `dist/` | `npm run build:astrikos` → `dist-astrikos/` |
-
-What differs lives in `src/edition.js`, the `link(techm, astrikos)` URLs in `src/config.js`, `vite.config.js`, and the `<!-- techm -->` blocks in `index.html` (left out of the Astrikos build, along with the Tech Mahindra logo files).
+The Astrikos-only version of this intro lives in its own repo: https://github.com/productastrikos/astrikos-intro
 
 ## Deploying
 
-Both builds are plain static files with relative paths, so they work from a domain root or any sub-folder.
+The build is plain static files with relative paths, so it works from a domain root or any sub-folder.
 
 ### Hostinger
 
-1. Build: `npm run build` (and/or `npm run build:astrikos`).
-2. In hPanel open **Websites → your site → File Manager**, go to `public_html` (or a sub-folder such as `public_html/astrikos`), and upload the **contents** of `dist/` (or `dist-astrikos/`), not the folder itself. Uploading a zip of the contents and choosing **Extract** is quickest.
+1. Build: `npm run build`.
+2. In hPanel open **Websites → your site → File Manager**, go to `public_html` (or a sub-folder), and upload the **contents** of `dist/`, not the folder itself. Uploading a zip of the contents and choosing **Extract** is quickest.
 3. `.htaccess` comes with the build: it caches the fingerprinted assets for a year and always revalidates `index.html`, so a re-upload shows at once.
-
-To host both editions on one domain, put one in `public_html` and the other in a sub-folder.
 
 ### Netlify
 
-`netlify.toml` builds the default edition: in Netlify choose **Add new site → Import an existing project**, pick this repo, and keep the detected settings (build `npm ci && npm run build`, publish `dist`, Node 22). For the Astrikos edition add a second site from the same repo with build command `npm ci && npm run build:astrikos` and publish directory `dist-astrikos`. Every push to `main` redeploys both.
+`netlify.toml` is included: in Netlify choose **Add new site → Import an existing project**, pick this repo, and keep the detected settings (build `npm ci && npm run build`, publish `dist`, Node 22). Every push to `main` redeploys.
 
 ## Where things live
 
 | What | File |
 | --- | --- |
 | Dashboard titles, hot keywords, **links**, loop speed | `src/config.js` |
-| Edition switch and brand accent | `src/edition.js` |
+| Brand accent colour | `src/brand.js` |
 | Captions, #keyword chips and the 3D call-outs for each scene | `src/intro/story.js` |
 | Every intro timing | `src/intro/timeline.js` |
 | Each dashboard's 3D scene, camera and live effects | `src/intro/scenes.js` |
