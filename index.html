@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02040a" />
+    <title>Astrikos S!aP · Intelligence Command Center</title>
+    <meta name="description" content="Tech Mahindra × Astrikos AI — the S!aP intelligence command center." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <canvas id="stage" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <!-- Caption, trending keywords and 3D call-outs: shown during the intro and the hub loop -->
+    <div id="stage-ui" class="stage-ui" aria-hidden="true">
+      <div class="callouts" data-callouts></div>
+      <div class="caption" data-caption>
+        <div class="cap-kicker"><b data-cap-num></b><span data-cap-kicker></span></div>
+        <div class="cap-title" data-cap-title></div>
+        <div class="cap-hot" data-cap-hot></div>
+      </div>
+    </div>
+
+    <!-- Intro-only chrome -->
+    <div id="intro" class="intro" aria-hidden="true">
+      <div class="hud hud-tl cue" data-cue="hud">
+        <img class="logo logo-techm" src="/brand/tech-mahindra-reversed.svg" alt="Tech Mahindra" />
+        <i class="hud-x">×</i>
+        <img class="logo logo-astrikos" src="/brand/astrikos-ai.svg" alt="Astrikos AI" />
+        <span class="hud-sub">S!aP · intelligence fabric</span>
+      </div>
+      <div class="hud hud-tr cue" data-cue="hud"><span class="hud-count" data-count>01 / 08</span></div>
+
+      <div class="presents cue" data-cue="presents">
+        <div class="presents-logos">
+          <img class="logo-techm" src="/brand/tech-mahindra-reversed.svg" alt="Tech Mahindra" />
+          <em>&amp;</em>
+          <img class="logo-astrikos" src="/brand/astrikos-ai.svg" alt="Astrikos AI" />
+        </div>
+        <small>present…</small>
+      </div>
+
+      <div class="tour cue" data-cue="tour" data-tour></div>
+      <div class="progress"><i data-progress></i></div>
+      <div class="flash" data-flash></div>
+    </div>
+
+    <div id="hub" class="hub" aria-hidden="true" inert></div>
+
+    <button id="skip" class="skip" type="button" hidden>Skip intro <kbd>Esc</kbd></button>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
