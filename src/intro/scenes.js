@@ -135,7 +135,7 @@ function updateBeams(list, local, vis) {
   }
 }
 
-// ---------------------------------------------------------------- 1 · DCMesh data center
+// ---------------------------------------------------------------- DCMesh data center
 
 function dataCenter(ctx) {
   const { sh } = ctx;
@@ -184,7 +184,7 @@ function dataCenter(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 2 · port construction
+// ---------------------------------------------------------------- port construction
 
 function port(ctx) {
   const { sh } = ctx;
@@ -214,7 +214,7 @@ function port(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 3 · manufacturing
+// ---------------------------------------------------------------- manufacturing
 
 function manufacturing(ctx) {
   const { sh } = ctx;
@@ -235,7 +235,7 @@ function manufacturing(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 4 · ZMU smart campus
+// ---------------------------------------------------------------- ZMU smart campus
 
 function campus(ctx) {
   const { sh } = ctx;
@@ -259,7 +259,7 @@ function campus(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 5 · airport
+// ---------------------------------------------------------------- airport
 
 function airport(ctx) {
   const { sh } = ctx;
@@ -280,7 +280,7 @@ function airport(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 6 · retail
+// ---------------------------------------------------------------- retail
 
 function retail(ctx) {
   const { sh } = ctx;
@@ -304,7 +304,7 @@ function retail(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 7 · SIA Xcel
+// ---------------------------------------------------------------- Sia Xcel
 
 function xcel(ctx) {
   const { sh } = ctx;
@@ -331,7 +331,7 @@ function xcel(ctx) {
   return sc;
 }
 
-// ---------------------------------------------------------------- 8 · SIA Facility (BMS)
+// ---------------------------------------------------------------- Sia Facility (BMS)
 
 function facility(ctx) {
   const { sh } = ctx;
@@ -359,5 +359,5 @@ function facility(ctx) {
 }
 
 export function buildScenes(ctx) {
-  return [dataCenter, port, manufacturing, campus, airport, retail, xcel, facility].map((f) => f(ctx));
+  return [xcel, facility, retail, port, campus, dataCenter, airport, manufacturing].map((f) => f(ctx));
 }

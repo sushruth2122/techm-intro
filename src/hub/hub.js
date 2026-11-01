@@ -14,8 +14,6 @@ function link(p, i) {
       <span class="link-body">
         <span class="link-top">
           <b>${String(i + 1).padStart(2, '0')}</b>
-          ${p.tag ? `<span class="link-tag">${esc(p.tag)}</span>` : ''}
-          ${p.flag ? `<span class="link-flag" data-tone="${esc(p.flag.tone)}"><i></i>${esc(p.flag.label)}</span>` : ''}
         </span>
         <span class="link-title">${esc(p.title)}</span>
         <span class="link-hot">${(p.hot || []).map(esc).join(' · ')}</span>
@@ -34,12 +32,11 @@ export function mountHub(root, { onReplay, onPreview, onRelease }) {
     <div class="hub-inner">
       <header class="hub-top">
         <div class="logos">
-          <img class="logo-techm" src="${BRAND.techm.src}" alt="${esc(BRAND.techm.alt)}" />
-          <i aria-hidden="true"></i>
+          ${BRAND.techm ? `<img class="logo-techm" src="${BRAND.techm.src}" alt="${esc(BRAND.techm.alt)}" />
+          <i aria-hidden="true"></i>` : ''}
           <img class="logo-astrikos" src="${BRAND.astrikos.src}" alt="${esc(BRAND.astrikos.alt)}" />
         </div>
         <div class="hub-title">
-          <small>S!aP · Smart Interop Analytical Platform</small>
           <h1>Intelligence Command Center</h1>
         </div>
         <div class="hub-actions">

@@ -9,6 +9,7 @@ import { POOL, GLOBE_N, PAL, rng, sparkShape, gridShape, globeShape, globeGrid, 
 import { MorphPoints, GlowPoints, state, morphMaterial, floorMaterial, arcMaterial, glowTexture } from './materials.js';
 import { buildScenes } from './scenes.js';
 import { PORTALS, LOOP_DWELL } from '../config.js';
+import { ACCENT } from '../edition.js';
 
 const FOV = 42;
 const BLOOM = 0.95;
@@ -30,8 +31,8 @@ const GLOBE_LAT = THREE.MathUtils.degToRad(35);
 const GLOBE_C = V(0, -GLOBE_R * Math.cos(GLOBE_LAT), -GLOBE_R * Math.sin(GLOBE_LAT));
 const GLOBE_VIEW = { dir: V(0, Math.sin(0.44), Math.cos(0.44)), dist: 230 };
 
-const LINK_TONES = [PAL.cyan, PAL.blue, PAL.red, PAL.cyan, PAL.blue, PAL.red, PAL.cyan, PAL.red];
-const CYAN = [0, 0.69, 1], RED = [0.77, 0.01, 0.04];
+const LINK_TONES = [PAL.cyan, PAL.blue, PAL.accent, PAL.cyan, PAL.blue, PAL.accent, PAL.cyan, PAL.accent];
+const CYAN = [0, 0.69, 1], ACCENT_LIN = new THREE.Color(ACCENT).toArray();
 
 function bezier(a, b, lift, s, out) {
   const cx = (a.x + b.x) / 2, cy = (a.y + b.y) / 2 + lift, cz = (a.z + b.z) / 2;
@@ -153,7 +154,7 @@ export class Intro {
 
     // Phase 1 pulses, the spark, and the packet that lands the first scene
     const accel = (x) => x * x;
-    this.pulseL = new Packet(PAL.red, sh);
+    this.pulseL = new Packet(PAL.accent, sh);
     this.pulseR = new Packet(PAL.cyan, sh);
     this.packet = new Packet(PAL.cyan, sh, 26, 0.45);
     world.add(this.pulseL.pts, this.pulseR.pts, this.packet.pts);
@@ -190,7 +191,7 @@ export class Intro {
     const o = this.overlay;
     this.cues = [...o.querySelectorAll('[data-cue]')].map((el) => ({ el, at: CUES[el.dataset.cue], on: false }));
     const tour = o.querySelector('[data-tour]');
-    tour.innerHTML = PORTALS.map((p, i) => `<span><b>${String(i + 1).padStart(2, '0')}</b>${p.title}</span>`).join('');
+    tour.innerHTML = PORTALS.map((p, i) => `<span><b>${String(i + 1).padStart(2, '0')}</b>${p.short ?? p.title}</span>`).join('');
     this.steps = [...tour.children].map((el, i) => ({ el, at: [sceneStart(i), sceneStart(i + 1)], on: false }));
     this.countEl = o.querySelector('[data-count]');
     this.progressEl = o.querySelector('[data-progress]');
@@ -760,7 +761,7 @@ export class Intro {
       P[j] = a * fx + b * cx + c * tx;
       P[j + 1] = a * fy + b * cy + c * ty;
       P[j + 2] = a * fz + b * cz + c * tz;
-      const tr = Math.sin(Math.PI * t) * transit, s = (rand[i] * 7.31) % 1 > 0.55 ? CYAN : RED;
+      const tr = Math.sin(Math.PI * t) * transit, s = (rand[i] * 7.31) % 1 > 0.55 ? CYAN : ACCENT_LIN;
       for (let q = 0; q < 3; q++) C[j + q] = (cf[j + q] + (ct[j + q] - cf[j + q]) * e) * (1 - tr) + s[q] * 1.6 * tr;
     }
     out.pos.needsUpdate = out.col.needsUpdate = true;

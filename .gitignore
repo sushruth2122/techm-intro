@@ -1,4 +1,9 @@
 node_modules/
 dist/
+dist-astrikos/
 .netlify/
 .claude/
+
+# Dashboard sources being re-themed (not part of this site)
+files for theme change/
+release/

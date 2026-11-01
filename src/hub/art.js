@@ -66,7 +66,7 @@ export const ART = {
       <g transform="translate(46 46)"><g class="gear"><g class="wire"><circle r="11"/><circle r="4"/>${teeth}</g></g></g>`);
   },
 
-  // ZMU Smart Campus: windows lighting up across a skyline, a sensor mast pinging.
+  // Smart Campus: windows lighting up across a skyline, a sensor mast pinging.
   campus() {
     const blds = [[18, 56, 32, 52], [56, 30, 36, 78], [98, 64, 28, 44], [132, 42, 44, 66]];
     let wins = '', i = 0;

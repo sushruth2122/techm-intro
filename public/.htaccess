@@ -1,0 +1,20 @@
+# For Apache / LiteSpeed hosts such as Hostinger (Netlify ignores this file).
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  # Build files carry a content hash in their name, so they can be cached for good.
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # The page itself always revalidates, so a new upload shows up straight away.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+</IfModule>

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { ACCENT } from '../edition.js';
 
 // Procedural structures for the intro. Each shape is described as wireframe edges
 // (plus a few surfaces and point clusters) and baked into a fixed number of particles,
@@ -32,7 +33,7 @@ export const PAL = {
   cyan: lin('#00D8FF', 1.0),
   cyanDim: lin('#00D8FF', 0.4),
   blue: lin('#2F6BFF', 1.0),
-  red: lin('#E31837', 1.1),
+  accent: lin(ACCENT, 1.1),
   green: lin('#1FE3A0', 1.0),
   greenDim: lin('#1FE3A0', 0.3),
   white: lin('#E8F4FF', 1.1),
@@ -185,7 +186,7 @@ export function sparkShape() {
   for (let i = 0; i < POOL; i++) {
     const [x, y, z] = ball(r, 0.25);
     pos.set([x, 1.2 + y, z], i * 3);
-    col.set(r() < 0.5 ? PAL.red : PAL.cyan, i * 3);
+    col.set(r() < 0.5 ? PAL.accent : PAL.cyan, i * 3);
   }
   return { pos, col };
 }
@@ -295,7 +296,7 @@ function crane(b, cx) {
   b.box(cx, yb - 0.45, tz, 1.3, 0.45, 1.0, PAL.steelHi, 1);
   b.line([cx - 0.3, yb - 0.45, tz], [cx - 0.3, 4.0, tz], SD, 0.5);
   b.line([cx + 0.3, yb - 0.45, tz], [cx + 0.3, 4.0, tz], SD, 0.5);
-  b.box(cx, 3.0, tz, 2.4, 1.0, 0.9, lead ? PAL.red : PAL.blue, 1.2);
+  b.box(cx, 3.0, tz, 2.4, 1.0, 0.9, lead ? PAL.accent : PAL.blue, 1.2);
   b.spot([cx, yb - 0.2, tz], PAL.cyan, 16, 0.08);
 }
 
@@ -314,7 +315,7 @@ function ship(b) {
     for (let z = zA + 0.5; z < zB - 0.4; z += 0.95) {
       const tiers = 1 + Math.floor(r() * 3);
       for (let k = 0; k < tiers; k++) {
-        const c = r() < 0.12 ? PAL.red : r() < 0.25 ? PAL.blue : PAL.steel;
+        const c = r() < 0.12 ? PAL.accent : r() < 0.25 ? PAL.blue : PAL.steel;
         b.box(x, y1 + k * 0.9, z, 2.4, 0.9, 0.9, c, 0.55);
       }
     }
@@ -327,7 +328,7 @@ function yard(b) {
     for (let z = 4.2; z <= 7.6; z += 1.0) {
       const tiers = 1 + Math.floor(r() * 3);
       for (let k = 0; k < tiers; k++) {
-        const c = r() < 0.1 ? PAL.red : r() < 0.2 ? PAL.blue : PAL.steelDim;
+        const c = r() < 0.1 ? PAL.accent : r() < 0.2 ? PAL.blue : PAL.steelDim;
         b.box(x, k * 0.9, z, 2.4, 0.9, 0.9, c, 0.45);
       }
     }
@@ -362,7 +363,7 @@ function construction(b) {
   b.line([mx, jy, mz], [3.0, jy, mz], PAL.steelHi, 1.1);
   for (let x = mx; x > 3.4; x -= 0.8) b.line([x, jy, mz], [x - 0.4, jy + 0.45, mz], PAL.steelDim, 0.3);
   b.line([mx, jy, mz], [mx + 3, jy, mz], PAL.steelHi, 0.9);
-  b.box(mx + 2.6, H, mz, 0.8, 0.7, 0.6, PAL.red, 0.8);
+  b.box(mx + 2.6, H, mz, 0.8, 0.7, 0.6, PAL.accent, 0.8);
   b.line([mx, jy, mz], [mx, H + 2.4, mz], PAL.steel, 0.8);
   b.line([mx, H + 2.4, mz], [4.2, jy, mz], PAL.steelDim, 0.5);
   b.line([mx, H + 2.4, mz], [mx + 3, jy, mz], PAL.steelDim, 0.5);
@@ -425,7 +426,7 @@ export function factoryShape() {
         b.line([j2[0] + o, j2[1], j2[2]], [j3[0] + o, j3[1], j3[2]], PAL.steelHi, 1.2);
       }
       b.spot(j2, PAL.cyan, 14, 0.07);
-      b.spot(j3, PAL.red, 10, 0.05);
+      b.spot(j3, PAL.accent, 10, 0.05);
     }
   }
 
@@ -443,7 +444,7 @@ export function factoryShape() {
   for (let x = -8; x <= -2.01; x += 1.5) b.line([x, 0, 3.7], [x, 3, 3.7], PAL.steelDim, 0.5);
   for (const y of [1, 2, 3]) b.line([-8, y, 3.7], [-2, y, 3.7], PAL.steel, 0.6);
   b.box(8.3, 0, 3.7, 1.0, 2.0, 0.6, PAL.steelHi, 0.8);
-  for (let k = 0; k < 4; k++) b.spot([8.0 + (k % 2) * 0.3, 1.2 + (k >> 1) * 0.35, 4.02], k === 3 ? PAL.red : PAL.cyan, 4, 0.04);
+  for (let k = 0; k < 4; k++) b.spot([8.0 + (k % 2) * 0.3, 1.2 + (k >> 1) * 0.35, 4.02], k === 3 ? PAL.accent : PAL.cyan, 4, 0.04);
   return b.bake(POOL, 0.86);
 }
 
@@ -542,7 +543,7 @@ function tower(b, cx, cz) {
     b.line(c1[i], c2[i], PAL.steel, 0.4);
   });
   b.line([cx, 8.3, cz], [cx, 9.6, cz], PAL.steelHi, 0.6);
-  b.spot([cx, 9.6, cz], PAL.red, 12, 0.06);
+  b.spot([cx, 9.6, cz], PAL.accent, 12, 0.06);
 }
 
 function building(b, x, z, sx, sy, sz) {
@@ -636,7 +637,7 @@ export function retailShape() {
   for (let x = x0; x <= x1 + 0.01; x += 1) if (Math.abs(x) > 1.6) b.line([x, 0, z1], [x, 2.6, z1], PAL.steelDim, 0.35);
   b.quad([x0, 0, z1], [8.4, 0, 0], [0, 2.6, 0], PAL.cyanDim, 0.5);
   b.quad([1.6, 0, z1], [8.4, 0, 0], [0, 2.6, 0], PAL.cyanDim, 0.5);
-  b.path([[-3, 2.75, z1 + 0.02], [3, 2.75, z1 + 0.02], [3, 3.25, z1 + 0.02], [-3, 3.25, z1 + 0.02]], PAL.red, 0.8, true, true);
+  b.path([[-3, 2.75, z1 + 0.02], [3, 2.75, z1 + 0.02], [3, 3.25, z1 + 0.02], [-3, 3.25, z1 + 0.02]], PAL.accent, 0.8, true, true);
 
   for (const z of [-4.6, -2.6, -0.6, 1.4]) {
     for (const [a, c] of [[-8.6, -1.4], [1.4, 8.6]]) {
@@ -705,7 +706,7 @@ export function facilityShape() {
     b.line([x, 0, 3.9], [x, 1.0, 3.9], PAL.steelHi, 0.5);
     b.spot([x, 1.0, 3.9], PAL.green, 4, 0.04);
   }
-  for (const p of [[-6, 6.0, 2.25], [6, 6.0, 2.25], [-6, 3, -4.25]]) b.spot(p, PAL.red, 10, 0.06);
+  for (const p of [[-6, 6.0, 2.25], [6, 6.0, 2.25], [-6, 3, -4.25]]) b.spot(p, PAL.accent, 10, 0.06);
   b.rect(0, 0.02, -1, 16, 10.5, PAL.navy, 0.6, false);
   return b.bake(POOL, 0.85);
 }
@@ -736,7 +737,7 @@ export function xcelShape() {
   const P = (x, y) => [x, y, Z];
   rrect(b, -W / 2, y0, W, H, 0.4, Z, PAL.white, 1.2);
   b.line(P(-8.1, y0 + H - 0.7), P(8.1, y0 + H - 0.7), PAL.cyanDim, 0.5, false);
-  for (let k = 0; k < 3; k++) b.spot(P(-7.9 + k * 0.35, y0 + H - 0.35), k ? PAL.steelHi : PAL.red, 6, 0.05);
+  for (let k = 0; k < 3; k++) b.spot(P(-7.9 + k * 0.35, y0 + H - 0.35), k ? PAL.steelHi : PAL.accent, 6, 0.05);
   b.line(P(-2.3, y0 + 0.3), P(-2.3, y0 + H - 1.0), PAL.steelDim, 0.5, false);
 
   // conversation: question → answer → follow-up → answer, then the prompt bar
@@ -759,7 +760,7 @@ export function xcelShape() {
   [0.7, 0.45, 0.85, 0.3].forEach((v, i) => {
     const x = -1.9 + i * 2.55;
     rrect(b, x, 7.55, 2.3, 1.15, 0.2, Z, PAL.cyanDim, 0.7);
-    b.line(P(x + 0.2, 7.85), P(x + 0.2 + 1.9 * v, 7.85), i === 3 ? PAL.red : PAL.cyan, 2.2, false);
+    b.line(P(x + 0.2, 7.85), P(x + 0.2 + 1.9 * v, 7.85), i === 3 ? PAL.accent : PAL.cyan, 2.2, false);
     text(x + 0.2, 8.3, 0.9, PAL.white);
   });
   b.line(P(-1.9, 3.6), P(3.8, 3.6), PAL.steelHi, 0.5, false);
@@ -770,7 +771,7 @@ export function xcelShape() {
     curve.push(P(-1.9 + s * 5.7, 3.9 + 2.8 * (0.45 + 0.28 * Math.sin(s * 7) + 0.18 * Math.sin(s * 17 + 1.3))));
   }
   b.path(curve, PAL.cyan, 2.0, false);
-  [0.5, 0.8, 0.35, 0.95, 0.6, 0.75].forEach((v, k) => b.quad([4.4 + k * 0.6, 3.6, Z], [0.38, 0, 0], [0, v * 3.3, 0], k === 3 ? PAL.red : PAL.blue, 1));
+  [0.5, 0.8, 0.35, 0.95, 0.6, 0.75].forEach((v, k) => b.quad([4.4 + k * 0.6, 3.6, Z], [0.38, 0, 0], [0, v * 3.3, 0], k === 3 ? PAL.accent : PAL.blue, 1));
   b.line(P(4.2, 3.6), P(8.0, 3.6), PAL.steelHi, 0.5, false);
   const donut = (r0, r1, a0, a1, c) => {
     for (let r = r0; r <= r1 + 1e-3; r += 0.07) {
@@ -783,12 +784,12 @@ export function xcelShape() {
     }
   };
   donut(0.7, 0.95, 0, 3.6, PAL.cyan);
-  donut(0.7, 0.95, 3.75, 5.2, PAL.red);
+  donut(0.7, 0.95, 3.75, 5.2, PAL.accent);
   donut(0.7, 0.95, 5.35, 6.15, PAL.blue);
   for (let k = 0; k < 4; k++) {
     const y = 1.45 + k * 0.42;
     b.line(P(2.0, y), P(8.0, y), PAL.steelDim, 0.5, false);
-    b.spot(P(2.25, y + 0.2), k === 1 ? PAL.red : PAL.cyan, 3, 0.03);
+    b.spot(P(2.25, y + 0.2), k === 1 ? PAL.accent : PAL.cyan, 3, 0.03);
     text(2.6, y + 0.2, 1.6 + (k % 2) * 0.8, PAL.steelDim);
   }
 
@@ -860,7 +861,7 @@ export function globeArcs(R, from, count = 9) {
     while (a.angleTo(b) < 0.6 || a.angleTo(b) > 1.9);
     const ang = a.angleTo(b), h = 0.06 + 0.16 * (ang / Math.PI);
     q.setFromUnitVectors(a, b);
-    const c = i % 2 ? PAL.red : PAL.cyan, ph = r();
+    const c = i % 2 ? PAL.accent : PAL.cyan, ph = r();
     const steps = 48;
     let prev = null;
     for (let k = 0; k <= steps; k++) {

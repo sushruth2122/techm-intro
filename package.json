@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:astrikos": "vite --mode astrikos",
     "build": "vite build",
-    "preview": "vite preview"
+    "build:astrikos": "vite build --mode astrikos",
+    "preview": "vite preview",
+    "preview:astrikos": "vite preview --mode astrikos"
   },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.3.0",

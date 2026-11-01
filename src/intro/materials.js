@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import { rng } from './shapes.js';
+import { ACCENT } from '../edition.js';
+
+const accent = new THREE.Color(ACCENT);
 
 // Shared GLSL for the DCMesh heat anomalies and the predictive scan. Anything in
 // world space within a heat zone glows red until the scan line has passed it.
@@ -8,6 +11,7 @@ const fxDecl = /* glsl */ `
   uniform vec4 uHeat[3];
   const vec3 CYAN = vec3(0.0, 0.69, 1.0);
   const vec3 RED = vec3(0.77, 0.01, 0.04);
+  const vec3 ACCENT = vec3(${accent.r}, ${accent.g}, ${accent.b});
   const vec3 GREEN = vec3(0.01, 0.77, 0.36);
   vec3 applyFx(vec3 col, vec3 p, out float band) {
     float heat = 0.0;
@@ -48,10 +52,10 @@ const morphVert = /* glsl */ `
     float ph = aRand * 6.2831;
     p += vec3(sin(uTime * 1.7 + ph * 7.0), cos(uTime * 1.3 + ph * 5.0), sin(uTime * 1.1 + ph * 3.0)) * uJitter;
 
-    // In flight, particles read as red / cyan data streams.
+    // In flight, particles read as accent / cyan data streams.
     float transit = sin(3.14159 * t) * uTransit;
     vec3 col = mix(aColFrom, aColTo, e);
-    col = mix(col, (fract(aRand * 7.31) > 0.55 ? CYAN : RED) * 1.6, transit);
+    col = mix(col, (fract(aRand * 7.31) > 0.55 ? CYAN : ACCENT) * 1.6, transit);
     float band;
     vColor = applyFx(col, p, band);
 
